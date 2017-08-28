@@ -1,0 +1,117 @@
+*{
+  box-sizing: border-box;
+}
+
+.App {
+  text-align: center;
+}
+
+body {
+  background-color: #222;
+  color: white;
+}
+
+.face-container{
+  text-align: center;
+  margin: 50px auto 50px auto;
+  width: 100%;
+  height: 500px;
+}
+
+.the-face{
+  width: 20%;
+  height: 300px;
+}
+
+#intro{
+  display: none;
+}
+
+.App-intro {
+  font-size: large;
+}
+
+#name-form{
+  font-size: 25px;
+}
+#name-button{
+  background-color: yellow;
+  color: black;
+  font-size: 15px;
+  height: 25px;
+  outline: none;
+  border: none;
+  border-radius: 2px;
+  margin-left: 5px;
+  transition: all 1.0s ease;
+}
+
+#name-button:hover{
+  background-color: green;
+  color: white;
+  cursor: pointer;
+}
+
+.input-bar{
+  height: 25px;
+  font-size: 15px;
+}
+
+#guess-form{
+  display: none;
+  margin-top: 20px;
+}
+
+#play-button{
+  font-size: 25px;
+  background: red;
+  padding:10px 20px;
+  color:#fff;
+  border:none;
+  border-radius:5px;
+  transition: all 1.0s ease;
+  
+  animation-name: flash;
+  animation-duration: 2s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+
+  //Firefox 1+
+  -webkit-animation-name: flash;
+  -webkit-animation-duration: 2s;
+  -webkit-animation-timing-function: linear;
+  -webkit-animation-iteration-count: infinite;
+
+  //Safari 3-4
+  -moz-animation-name: flash;
+  -moz-animation-duration: 2s;
+  -moz-animation-timing-function: linear;
+  -moz-animation-iteration-count: infinite;
+}
+
+@keyframes flash {  
+    0% { opacity: 1.0; }
+    50% { opacity: 0.5; }
+    100% { opacity: 1.0; }
+}
+
+//Firefox 1+
+@-webkit-keyframes flash {  
+    0% { opacity: 1.0; }
+    50% { opacity: 0.5; }
+    100% { opacity: 1.0; }
+}
+
+//Safari 3-4
+@-moz-keyframes flash {  
+    0% { opacity: 1.0; }
+    50% { opacity: 0.5; }
+    100% { opacity: 1.0; }
+}
+
+#play-button:hover{
+  cursor: pointer;
+  font-size: 35px;
+}
+
+
