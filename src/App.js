@@ -21,6 +21,7 @@ class App extends Component {
     this.addUsername = this.addUsername.bind(this)
     this.generateSecretNum = this.generateSecretNum.bind(this)
     this.processUserguess = this.processUserguess.bind(this)
+    this.runGame = this.runGame.bind(this)
     
   }
 
@@ -55,6 +56,57 @@ class App extends Component {
     console.log(guess)
     console.log(secret)
 
+    if(guess % 1 != 0){
+
+      alert('Please input whole number');
+    }
+    else if( guess < 1 || guess > 100){
+
+      alert('Please enter a number between 1 and 100');
+    }
+    else {
+
+      if(Math.abs(secret - guess) == 0){
+        
+        document.getElementById("feedback").value = "You did it, you won!";
+      
+      } 
+      else if(Math.abs(secret - guess) <= 10){
+        
+        document.getElementById("feedback").value = 'Smokin Hot!!!';
+      
+      } 
+      else if(Math.abs(secret - guess) <= 20 && Math.abs(secret - guess) > 10){
+        
+        document.getElementById("feedback").value = 'Your Hot!';
+      
+      } 
+      else if(Math.abs(secret - guess) <= 30 && Math.abs(secret - guess) > 20){
+        
+        document.getElementById("feedback").value = 'Warming up';
+      
+      } 
+      else if(Math.abs(secret - guess) <= 40 && Math.abs(secret - guess) > 30){
+        
+        document.getElementById("feedback").value = 'Your cold, come on'; 
+
+      }
+      else if(Math.abs(secret - guess) <= 50 && Math.abs(secret - guess) > 40){
+        
+        document.getElementById("feedback").value = 'Ice cold man!';
+        
+     }
+      else {
+        
+        document.getElementById("feedback").value = 'Subzero freezing';
+    
+      }
+    }
+  }
+
+  runGame(){
+
+
   }
 
   render() {
@@ -66,6 +118,7 @@ class App extends Component {
           <Greetings /> 
           <AddName addUsername={this.addUsername} userName={this.state.userName} />
           <GameInput processUserguess={this.processUserguess} secretNum={this.state.secretNum} />
+          <h3 id="feeback"></h3>
         </div>
       </div>
     );
