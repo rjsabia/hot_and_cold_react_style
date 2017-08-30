@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Intro = ({userName, generateSecretNum}) => {
+const Intro = ({userName, generateSecretNum, startGame}) => {
 	
 	return(
 		<div id="intro">
@@ -10,6 +10,7 @@ const Intro = ({userName, generateSecretNum}) => {
 				document.getElementById("guess-form").style.display = 'block';
 				document.getElementById("intro").style.display = 'none';
 				generateSecretNum();
+				startGame()
 			}}>
 
 			Lets play</button>

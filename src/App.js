@@ -14,15 +14,23 @@ class App extends Component {
     this.state = {
       userName: '',
       guess: '',
-      secretNum: ''
+      secretNum: '',
+      guesses: [],
+      feedback: 'Make your guess!',
+      playing: false
 
     }
 
     this.addUsername = this.addUsername.bind(this)
     this.generateSecretNum = this.generateSecretNum.bind(this)
     this.processUserguess = this.processUserguess.bind(this)
-    this.runGame = this.runGame.bind(this)
+    this.startGame = this.startGame.bind(this)
     
+  }
+
+  startGame(){
+    this.setState({playing: true})
+
   }
 
   addUsername(name){
@@ -39,9 +47,7 @@ class App extends Component {
 
   generateSecretNum(){
 
-    const secretNum = {
-      secret: Math.floor((Math.random() * 100) + 1)
-    }
+    const secretNum = Math.floor((Math.random() * 100) + 1)
 
     this.state.secretNum = secretNum
 
@@ -51,74 +57,77 @@ class App extends Component {
 
   }
 
-  processUserguess(guess, secret){
+  processUserguess(guess, secret, feedback){
 
     console.log(guess)
     console.log(secret)
 
-    if(guess % 1 != 0){
+    guess = parseInt(guess, 10);
 
-      alert('Please input whole number');
+        const difference =  secret- guess;
+
+        console.log(difference)
+
+        if(guess % 1 !== 0){
+
+          alert('Please input whole number');
+        }
+        else if( guess < 1 || guess > 100){
+
+          alert('Please enter a number between 1 and 100');
+        }
+
+        else{
+
+          if (difference >= 50) {
+              
+              feedback = 'You\'re Ice Cold...';
+
+          }
+          else if (difference >= 30) {
+              
+              feedback = 'You\'re Cold...';
+
+          }
+          else if (difference >= 10) {
+              
+              feedback = 'You\'re Warm';
+
+          }
+          else if (difference >= 1) {
+              
+              feedback = 'You\'re Hot!';
+
+          }
+          else {
+              
+              feedback = 'You got it!';
+
+          }
+
+        }
+        console.log(this.state.guesses.length)
+
+        this.setState({
+            
+            feedback,
+            
+            guesses: [...this.state.guesses, guess]
+
+        });
+
+        console.log(feedback)
     }
-    else if( guess < 1 || guess > 100){
-
-      alert('Please enter a number between 1 and 100');
-    }
-    else {
-
-      if(Math.abs(secret - guess) == 0){
-        
-        document.getElementById("feedback").value = "You did it, you won!";
-      
-      } 
-      else if(Math.abs(secret - guess) <= 10){
-        
-        document.getElementById("feedback").value = 'Smokin Hot!!!';
-      
-      } 
-      else if(Math.abs(secret - guess) <= 20 && Math.abs(secret - guess) > 10){
-        
-        document.getElementById("feedback").value = 'Your Hot!';
-      
-      } 
-      else if(Math.abs(secret - guess) <= 30 && Math.abs(secret - guess) > 20){
-        
-        document.getElementById("feedback").value = 'Warming up';
-      
-      } 
-      else if(Math.abs(secret - guess) <= 40 && Math.abs(secret - guess) > 30){
-        
-        document.getElementById("feedback").value = 'Your cold, come on'; 
-
-      }
-      else if(Math.abs(secret - guess) <= 50 && Math.abs(secret - guess) > 40){
-        
-        document.getElementById("feedback").value = 'Ice cold man!';
-        
-     }
-      else {
-        
-        document.getElementById("feedback").value = 'Subzero freezing';
-    
-      }
-    }
-  }
-
-  runGame(){
-
-
-  }
 
   render() {
     return (
       <div className="App">
         <div className="face-container">
-          <img className="the-face" src={IntroEmoji} /> 
-          <Intro userName={this.state.userName} generateSecretNum={this.generateSecretNum} />
+          <img className="the-face" src={IntroEmoji} alt="emojo face" /> 
+          <Intro userName={this.state.userName} generateSecretNum={this.generateSecretNum} startGame={this.startGame} />
           <Greetings /> 
           <AddName addUsername={this.addUsername} userName={this.state.userName} />
-          <GameInput processUserguess={this.processUserguess} secretNum={this.state.secretNum} />
-          <h3 id="feeback"></h3>
+          <GameInput processUserguess={this.processUserguess} secretNum={this.state.secretNum} feedback={this.state.feedback} playing={this.state.playing} />
         </div>
       </div>
     );
