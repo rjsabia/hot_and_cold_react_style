@@ -22,7 +22,7 @@ const AddName = ({addUsername, userName}) => {
 
 			<label>Who do I have the pleasure of speaking to: </label>	
 			<input className="input-bar" type="text" name="userName" placeholder="Enter your name..."/>
-			<button id="name-button">Submit</button>
+			<button className="name-button">Submit</button>
 
 		</form>
 	)

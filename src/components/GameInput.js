@@ -1,12 +1,14 @@
 import React from 'react'
 
-const GameInput = ({processUserguess, secretNum, feedback, playing}) => {
+const GameInput = ({processUserguess, secretNum, feedback, playing, guessCount}) => {
 
 	return(
 
 		<div>
 
 		{playing ? <h1>{feedback}</h1> : ''}
+
+
 			
 			<form id="guess-form" onSubmit={(event) => {
 				event.preventDefault()
@@ -18,10 +20,10 @@ const GameInput = ({processUserguess, secretNum, feedback, playing}) => {
 				event.target.userGuess.value = ''
 
 			}}>
-				
-				<label>Enter a number between 0 and 100</label>
-				<input placeholder="Enter your guess here" type="number" name="userGuess"/>
-				<button>Guess</button>
+				<h3>Guess counter: {guessCount}</h3>
+				<label className="guess-input">Enter a number between 0 and 100</label>
+				<input placeholder="Enter your guess here" type="number" name="userGuess" className="input-bar"/>
+				<button className="name-button">Guess</button>
 			</form>
 
 		</div>

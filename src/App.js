@@ -16,8 +16,9 @@ class App extends Component {
       guess: '',
       secretNum: '',
       guesses: [],
-      feedback: 'Make your guess!',
-      playing: false
+      feedback: 'Im thinking of a number between 0 and 100, can you guess it!',
+      playing: false,
+      guessCount: ''
 
     }
 
@@ -25,7 +26,18 @@ class App extends Component {
     this.generateSecretNum = this.generateSecretNum.bind(this)
     this.processUserguess = this.processUserguess.bind(this)
     this.startGame = this.startGame.bind(this)
+    this.newGame = this.newGame.bind(this)
     
+  }
+
+  newGame(){
+    this.setState({
+      guesses: [],
+      secretNum: Math.floor((Math.random() * 100) + 1),
+      feedback: 'Im thinking of a number between 0 and 100, can you guess it!',
+      
+    })
+
   }
 
   startGame(){
@@ -53,20 +65,20 @@ class App extends Component {
 
     this.setState({secretNum: this.state.secretNum})
 
-    console.log(secretNum)
+    // console.log(secretNum)
 
   }
 
   processUserguess(guess, secret, feedback){
 
-    console.log(guess)
-    console.log(secret)
+    // console.log(guess)
+    // console.log(secret)
 
     guess = parseInt(guess, 10);
 
         const difference =  secret- guess;
 
-        console.log(difference)
+        // console.log(difference)
 
         if(guess % 1 !== 0){
 
@@ -108,15 +120,19 @@ class App extends Component {
         }
         console.log(this.state.guesses.length)
 
+        const guessCount = this.state.guesses.length + 1
+
         this.setState({
             
             feedback,
             
-            guesses: [...this.state.guesses, guess]
+            guesses: [...this.state.guesses, guess],
+
+            guessCount
 
         });
 
-        console.log(feedback)
+        // console.log(feedback)
     }
 
   render() {
@@ -127,7 +143,7 @@ class App extends Component {
           <Intro userName={this.state.userName} generateSecretNum={this.generateSecretNum} startGame={this.startGame} />
           <Greetings /> 
           <AddName addUsername={this.addUsername} userName={this.state.userName} />
-          <GameInput processUserguess={this.processUserguess} secretNum={this.state.secretNum} feedback={this.state.feedback} playing={this.state.playing} />
+          <GameInput processUserguess={this.processUserguess} secretNum={this.state.secretNum} feedback={this.state.feedback} playing={this.state.playing} guessCount={this.state.guessCount} />
         </div>
       </div>
     );
