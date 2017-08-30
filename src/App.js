@@ -13,7 +13,6 @@ class App extends Component {
 
     this.state = {
       userName: '',
-      guess: '',
       secretNum: '',
       guesses: [],
       feedback: 'Im thinking of a number between 0 and 100, can you guess it!',
@@ -35,7 +34,8 @@ class App extends Component {
       guesses: [],
       secretNum: Math.floor((Math.random() * 100) + 1),
       feedback: 'Im thinking of a number between 0 and 100, can you guess it!',
-      
+      guessCount: ''
+
     })
 
   }
@@ -76,7 +76,7 @@ class App extends Component {
 
     guess = parseInt(guess, 10);
 
-        const difference =  secret- guess;
+        const difference =  Math.abs(secret - guess);
 
         // console.log(difference)
 
@@ -118,7 +118,7 @@ class App extends Component {
           }
 
         }
-        console.log(this.state.guesses.length)
+        // console.log(this.state.guesses.length)
 
         const guessCount = this.state.guesses.length + 1
 
@@ -143,7 +143,7 @@ class App extends Component {
           <Intro userName={this.state.userName} generateSecretNum={this.generateSecretNum} startGame={this.startGame} />
           <Greetings /> 
           <AddName addUsername={this.addUsername} userName={this.state.userName} />
-          <GameInput processUserguess={this.processUserguess} secretNum={this.state.secretNum} feedback={this.state.feedback} playing={this.state.playing} guessCount={this.state.guessCount} />
+          <GameInput processUserguess={this.processUserguess} newGame={this.newGame} secretNum={this.state.secretNum} feedback={this.state.feedback} playing={this.state.playing} guessCount={this.state.guessCount} />
         </div>
       </div>
     );

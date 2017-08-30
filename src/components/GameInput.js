@@ -1,6 +1,6 @@
 import React from 'react'
 
-const GameInput = ({processUserguess, secretNum, feedback, playing, guessCount}) => {
+const GameInput = ({processUserguess, secretNum, feedback, playing, guessCount, newGame}) => {
 
 	return(
 
@@ -25,6 +25,12 @@ const GameInput = ({processUserguess, secretNum, feedback, playing, guessCount})
 				<input placeholder="Enter your guess here" type="number" name="userGuess" className="input-bar"/>
 				<button className="name-button">Guess</button>
 			</form>
+
+			{playing ? <button className="play-button" onClick={ (event) => {
+
+				newGame()
+
+			}}>New Game</button> : ''}
 
 		</div>
 

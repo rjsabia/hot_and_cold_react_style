@@ -60,6 +60,7 @@ body {
 #guess-form{
   display: none;
   margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 .guess-input{
@@ -67,7 +68,7 @@ body {
   margin-right: 5px;
 }
 
-#play-button{
+.play-button{
   font-size: 25px;
   background: red;
   padding:10px 20px;
@@ -114,7 +115,7 @@ body {
     100% { opacity: 1.0; }
 }
 
-#play-button:hover{
+.play-button:hover{
   cursor: pointer;
   font-size: 35px;
 }
