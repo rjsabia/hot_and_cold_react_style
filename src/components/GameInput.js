@@ -20,7 +20,7 @@ class GameInput extends React.Component {
 
 				const userGuess = this.input.value
 
-				this.props.processUserguess(userGuess, this.props.secretNum, this.props.feedback)
+				this.props.processUserguess(userGuess)
 
 				// event.target.userGuess.value = ''
 

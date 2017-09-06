@@ -60,16 +60,18 @@ class App extends Component {
 
   }
 
-  processUserguess(guess, secret, feedback){
+  processUserguess(guess){
 
     // console.log(guess)
     // console.log(secret)
 
     guess = parseInt(guess, 10);
 
-        const difference =  Math.abs(secret - guess);
+        const difference =  Math.abs(this.state.secretNum - guess);
 
-        // console.log(difference)
+        let feedback = ''
+
+        console.log(difference)
 
         if(guess % 1 !== 0){
 
