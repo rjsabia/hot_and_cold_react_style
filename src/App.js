@@ -54,9 +54,7 @@ class App extends Component {
 
     const secretNum = Math.floor((Math.random() * 100) + 1)
 
-    this.state.secretNum = secretNum
-
-    this.setState({secretNum: this.state.secretNum})
+    this.setState({secretNum})
 
     // console.log(secretNum)
 
