@@ -45,16 +45,9 @@ class App extends Component {
 
   }
 
-  addUsername(name){
-      console.log(name)
+  addUsername(userName){
 
-      const theName = {
-        name
-      }
-
-      this.state.userName = theName
-
-      this.setState({userName: this.state.userName})
+      this.setState({userName})
   }
 
   generateSecretNum(){
