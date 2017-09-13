@@ -1,4 +1,6 @@
 import React from 'react'
+import { connect } from 'react-redux'
+import { addUsername } from '../actions'
 
 class AddName extends React.Component {
 
@@ -10,13 +12,10 @@ class AddName extends React.Component {
 
 			event.preventDefault()
 
-			// const userName = event.target.userName.value
-
 			const userName = this.input.value
 
 			console.log(userName)
 
-			//add function here
 			this.props.addUsername(userName)
 
 			document.getElementById("greeting").style.display = 'none';
@@ -35,4 +34,14 @@ class AddName extends React.Component {
 	}
 }
 
-export default AddName
+const mapStateToProps = (state) => {
+	return{
+		userName: state
+	}
+}
+
+const mapDispatchToProps = (dispatch) => ({
+	addUsername: (userName) => dispatch(addUsername(userName))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(AddName)
